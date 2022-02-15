@@ -1,4 +1,4 @@
-module github.com/ChainSafe/chainbridge-utils
+module github.com/centrifuge/chainbridge-utils
 
 go 1.17
 
