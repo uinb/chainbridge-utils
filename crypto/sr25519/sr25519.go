@@ -43,14 +43,14 @@ func (kp *Keypair) AsKeyringPair() *signature.KeyringPair {
 
 // Encode uses scale to encode underlying KeyringPair
 func (kp *Keypair) Encode() []byte {
-	out, _ := types.EncodeToBytes(kp.keyringPair)
+	out, _ := types.Encode(kp.keyringPair)
 	return out
 }
 
 // Decode initializes keypair by decoding input as a KeyringPair
 func (kp *Keypair) Decode(in []byte) error {
 	kp.keyringPair = &signature.KeyringPair{}
-	return types.DecodeFromBytes(in, kp.keyringPair)
+	return types.Decode(in, kp.keyringPair)
 }
 
 // Address returns the ss58 formated address
