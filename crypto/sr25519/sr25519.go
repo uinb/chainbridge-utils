@@ -5,10 +5,10 @@ package sr25519
 
 import (
 	"crypto/rand"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types/codec"
 
 	"github.com/centrifuge/chainbridge-utils/crypto"
 	"github.com/centrifuge/go-substrate-rpc-client/v4/signature"
-	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 )
 
@@ -43,14 +43,14 @@ func (kp *Keypair) AsKeyringPair() *signature.KeyringPair {
 
 // Encode uses scale to encode underlying KeyringPair
 func (kp *Keypair) Encode() []byte {
-	out, _ := types.Encode(kp.keyringPair)
+	out, _ := codec.Encode(kp.keyringPair)
 	return out
 }
 
 // Decode initializes keypair by decoding input as a KeyringPair
 func (kp *Keypair) Decode(in []byte) error {
 	kp.keyringPair = &signature.KeyringPair{}
-	return types.Decode(in, kp.keyringPair)
+	return codec.Decode(in, kp.keyringPair)
 }
 
 // Address returns the ss58 formated address
