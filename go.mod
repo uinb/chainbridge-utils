@@ -9,6 +9,7 @@ require github.com/centrifuge/go-substrate-rpc-client/v4 v4.0.8-0.20220930212708
 
 require (
 	github.com/ChainSafe/log15 v1.0.0
+	github.com/btcsuite/btcd v0.22.1
 	github.com/ethereum/go-ethereum v1.10.17
 	github.com/prometheus/client_golang v1.4.1
 	golang.org/x/crypto v0.0.0-20220926161630-eccd6366d1be
@@ -19,7 +20,6 @@ require (
 	github.com/ChainSafe/go-schnorrkel v1.0.0 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/btcsuite/btcd/btcec/v2 v2.1.2 // indirect
-	github.com/btcsuite/btcd/chaincfg/chainhash v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.1.1 // indirect
 	github.com/cosmos/go-bip39 v1.0.0 // indirect
 	github.com/decred/base58 v1.0.3 // indirect
