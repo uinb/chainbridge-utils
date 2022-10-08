@@ -1,4 +1,4 @@
-module github.com/centrifuge/chainbridge-utils
+module github.com/uinb/chainbridge-utils
 
 go 1.18
 
