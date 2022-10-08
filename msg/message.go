@@ -38,7 +38,7 @@ type Message struct {
 	Payload      []interface{} // data associated with event sequence
 }
 
-func NewFungibleTransfer(source, depositer EthAddress, dest ChainId, nonce Nonce, amount *big.Int, resourceId ResourceId, recipient []byte) Message {
+func NewFungibleTransfer(source,dest ChainId, depositer EthAddress, nonce Nonce, amount *big.Int, resourceId ResourceId, recipient []byte) Message {
 	return Message{
 		Source:       source,
 		Destination:  dest,
@@ -53,13 +53,12 @@ func NewFungibleTransfer(source, depositer EthAddress, dest ChainId, nonce Nonce
 	}
 }
 
-func NewNonFungibleTransfer(source, depositer EthAddress, dest ChainId, nonce Nonce, resourceId ResourceId, tokenId *big.Int, recipient, metadata []byte) Message {
+func NewNonFungibleTransfer(source, dest ChainId, depositer EthAddress, nonce Nonce, resourceId ResourceId, tokenId *big.Int, recipient, metadata []byte) Message {
 	return Message{
 		Source:       source,
 		Destination:  dest,
 		Type:         NonFungibleTransfer,
 		DepositNonce: nonce,
-		Depositer:    depositer,
 		ResourceId:   resourceId,
 		Payload: []interface{}{
 			tokenId.Bytes(),
@@ -69,13 +68,12 @@ func NewNonFungibleTransfer(source, depositer EthAddress, dest ChainId, nonce No
 	}
 }
 
-func NewGenericTransfer(source, depositer EthAddress, dest ChainId, nonce Nonce, resourceId ResourceId, metadata []byte) Message {
+func NewGenericTransfer(source, dest ChainId, depositer EthAddress, nonce Nonce, resourceId ResourceId, metadata []byte) Message {
 	return Message{
 		Source:       source,
 		Destination:  dest,
 		Type:         GenericTransfer,
 		DepositNonce: nonce,
-		Depositer:    depositer,
 		ResourceId:   resourceId,
 		Payload: []interface{}{
 			metadata,
