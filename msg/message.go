@@ -6,6 +6,7 @@ package msg
 import (
 	"fmt"
 	"math/big"
+	"github.com/ethereum/go-ethereum/common"
 )
 
 type ChainId uint8
@@ -32,16 +33,18 @@ type Message struct {
 	Destination  ChainId      // Destination chain of message
 	Type         TransferType // type of bridge transfer
 	DepositNonce Nonce        // Nonce for the deposit
+	Depositer    common.Address
 	ResourceId   ResourceId
 	Payload      []interface{} // data associated with event sequence
 }
 
-func NewFungibleTransfer(source, dest ChainId, nonce Nonce, amount *big.Int, resourceId ResourceId, recipient []byte) Message {
+func NewFungibleTransfer(source,dest ChainId, depositer common.Address, nonce Nonce, amount *big.Int, resourceId ResourceId, recipient []byte) Message {
 	return Message{
 		Source:       source,
 		Destination:  dest,
 		Type:         FungibleTransfer,
 		DepositNonce: nonce,
+		Depositer:    depositer,
 		ResourceId:   resourceId,
 		Payload: []interface{}{
 			amount.Bytes(),
@@ -50,12 +53,13 @@ func NewFungibleTransfer(source, dest ChainId, nonce Nonce, amount *big.Int, res
 	}
 }
 
-func NewNonFungibleTransfer(source, dest ChainId, nonce Nonce, resourceId ResourceId, tokenId *big.Int, recipient, metadata []byte) Message {
+func NewNonFungibleTransfer(source, dest ChainId, depositer common.Address, nonce Nonce, resourceId ResourceId, tokenId *big.Int, recipient, metadata []byte) Message {
 	return Message{
 		Source:       source,
 		Destination:  dest,
 		Type:         NonFungibleTransfer,
 		DepositNonce: nonce,
+		Depositer:    depositer,
 		ResourceId:   resourceId,
 		Payload: []interface{}{
 			tokenId.Bytes(),
@@ -65,12 +69,13 @@ func NewNonFungibleTransfer(source, dest ChainId, nonce Nonce, resourceId Resour
 	}
 }
 
-func NewGenericTransfer(source, dest ChainId, nonce Nonce, resourceId ResourceId, metadata []byte) Message {
+func NewGenericTransfer(source, dest ChainId, depositer common.Address, nonce Nonce, resourceId ResourceId, metadata []byte) Message {
 	return Message{
 		Source:       source,
 		Destination:  dest,
 		Type:         GenericTransfer,
 		DepositNonce: nonce,
+		Depositer:    depositer,
 		ResourceId:   resourceId,
 		Payload: []interface{}{
 			metadata,

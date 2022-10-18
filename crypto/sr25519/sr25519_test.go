@@ -7,7 +7,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/centrifuge/go-substrate-rpc-client/v4/signature"
+	"github.com/uinb/go-substrate-rpc-client/v4/signature"
 )
 
 func TestKeypair_AsKeyringPair(t *testing.T) {

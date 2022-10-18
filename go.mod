@@ -1,10 +1,10 @@
-module github.com/centrifuge/chainbridge-utils
+module github.com/uinb/chainbridge-utils
 
 go 1.17
 
 require (
 	github.com/ChainSafe/log15 v1.0.0
-	github.com/centrifuge/go-substrate-rpc-client/v4 v4.0.2
+	github.com/uinb/go-substrate-rpc-client/v4 v4.0.5-fusotao
 	github.com/ethereum/go-ethereum v1.10.17
 	github.com/prometheus/client_golang v1.4.1
 	golang.org/x/crypto v0.0.0-20211117183948-ae814b36b871
