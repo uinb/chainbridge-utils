@@ -55,7 +55,7 @@ func NewFungibleTransfer(source,dest ChainId, depositer common.Address, nonce No
 	}
 }
 
-func NewNonFungibleTransfer(source, dest ChainId, depositer common.Address, nonce Nonce, resourceId ResourceId, tokenId *big.Int, recipient, metadata []byte) Message {
+func NewNonFungibleTransfer(source, dest ChainId, depositer common.Address, nonce Nonce, resourceId ResourceId, tokenId *big.Int, txHash TxHash, recipient, metadata []byte) Message {
 	return Message{
 		Source:       source,
 		Destination:  dest,
@@ -72,7 +72,7 @@ func NewNonFungibleTransfer(source, dest ChainId, depositer common.Address, nonc
 	}
 }
 
-func NewGenericTransfer(source, dest ChainId, depositer common.Address, nonce Nonce, resourceId ResourceId, metadata []byte) Message {
+func NewGenericTransfer(source, dest ChainId, depositer common.Address, nonce Nonce, resourceId ResourceId, txHash TxHash, metadata []byte) Message {
 	return Message{
 		Source:       source,
 		Destination:  dest,
