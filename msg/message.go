@@ -12,7 +12,7 @@ import (
 type ChainId uint8
 type TransferType string
 type ResourceId [32]byte
-
+type TxHash [32]byte
 func (r ResourceId) Hex() string {
 	return fmt.Sprintf("%x", r)
 }
@@ -35,10 +35,11 @@ type Message struct {
 	DepositNonce Nonce        // Nonce for the deposit
 	Depositer    common.Address
 	ResourceId   ResourceId
+	TxHash       TxHash
 	Payload      []interface{} // data associated with event sequence
 }
 
-func NewFungibleTransfer(source,dest ChainId, depositer common.Address, nonce Nonce, amount *big.Int, resourceId ResourceId, recipient []byte) Message {
+func NewFungibleTransfer(source,dest ChainId, depositer common.Address, nonce Nonce, amount *big.Int, resourceId ResourceId, txHash TxHash, recipient []byte) Message {
 	return Message{
 		Source:       source,
 		Destination:  dest,
@@ -46,6 +47,7 @@ func NewFungibleTransfer(source,dest ChainId, depositer common.Address, nonce No
 		DepositNonce: nonce,
 		Depositer:    depositer,
 		ResourceId:   resourceId,
+		TxHash:       txHash,
 		Payload: []interface{}{
 			amount.Bytes(),
 			recipient,
@@ -61,6 +63,7 @@ func NewNonFungibleTransfer(source, dest ChainId, depositer common.Address, nonc
 		DepositNonce: nonce,
 		Depositer:    depositer,
 		ResourceId:   resourceId,
+		TxHash:       txHash,
 		Payload: []interface{}{
 			tokenId.Bytes(),
 			recipient,
@@ -77,6 +80,7 @@ func NewGenericTransfer(source, dest ChainId, depositer common.Address, nonce No
 		DepositNonce: nonce,
 		Depositer:    depositer,
 		ResourceId:   resourceId,
+		TxHash:       txHash,
 		Payload: []interface{}{
 			metadata,
 		},
